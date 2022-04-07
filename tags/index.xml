@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Myungjae Cho</title>
+    <link>http://nameontree.github.io/tags/</link>
+    <description>Recent content in Tags on Myungjae Cho</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 07 Apr 2022 10:04:00 -0400</lastBuildDate>
+    
+	<atom:link href="http://nameontree.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>hello world</title>
+      <link>http://nameontree.github.io/tags/hello-world/</link>
+      <pubDate>Thu, 07 Apr 2022 10:04:00 -0400</pubDate>
+      
+      <guid>http://nameontree.github.io/tags/hello-world/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

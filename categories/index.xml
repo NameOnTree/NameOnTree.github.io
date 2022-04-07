@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Myungjae Cho</title>
+    <link>http://nameontree.github.io/categories/</link>
+    <description>Recent content in Categories on Myungjae Cho</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 07 Apr 2022 10:04:00 -0400</lastBuildDate>
+    
+	<atom:link href="http://nameontree.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>blog</title>
+      <link>http://nameontree.github.io/categories/blog/</link>
+      <pubDate>Thu, 07 Apr 2022 10:04:00 -0400</pubDate>
+      
+      <guid>http://nameontree.github.io/categories/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>github</title>
+      <link>http://nameontree.github.io/categories/github/</link>
+      <pubDate>Thu, 07 Apr 2022 10:04:00 -0400</pubDate>
+      
+      <guid>http://nameontree.github.io/categories/github/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
