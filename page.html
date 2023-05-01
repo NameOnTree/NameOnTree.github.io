@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Decision-Based Game</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {goToPage(0);});
+    const resources = [
+        {image: "0.png", prompt: "Once upon a time, there was a king who lived in his palace... Actually, in this story, you are the king. There has been a huge drought recently, and people in your kingdom seem to be starving. You are a kind king but that doesn't make you a good king. What matters to your people is their own safety. Somehow, you have to come up with an idea but you can't. You don't know what to do. What you should do?", buttons:["Go outside of the palace to find the solution!", "Do nothing and leave everything to your servents.", "Maybe sleep for now. A man is wiser after getting more sleep."], children:[1, 2, 4]}, 
+        {image: "1.png", prompt: "You want to go outside of the palace. However, the current situation in your kingdom looks really bad, so you can't guarantee your own safety. Should you attend your soldiers with you?", buttons:["Yes", "No"], children:[8, 7]}, 
+        {image: "2.jpeg", prompt: "You decide to leave everything to your servents. You don't know if they can solve the issue, but what's decided is already decided. As the time goes, you become nervous and nervous as you have heard nothing from your servents.", buttons:["continue"], children:[3]}, 
+        {image: "3.png", prompt: "BAD ENDING: After several days later, a huge wave of angry mobs managed to break into your palace. They screamed \"Bring the king and nobles down!\". You tried to escape, but you got caught eventually. All you can do now is just waiting to be killed.", buttons:["Start from the beginning"], children:[0]},
+        {image: "", prompt: "You sleep for a while. On the next day, you feel much wiser than yesterday. You concluded that you can spend your fortune to buy some foods from the other countries and share them with your people. Should you proceed with this solution?", buttons:["This might be the solution! Go for it.", "Go outside to gather more information"], children:[6, 1]},
+        {image: "", prompt: "You want to go outside of the palace. However, the current situation in your kingdom looks really bad, so you can't guarantee your own safety. Should you attend your soldiers with you?", buttons:["Yes", "No"], children:[7, 8]},
+        {image: "", prompt: "You bought foods from the other countries and distributed them to your people. However, the situation didn't get any better. It seems the drought was not the only problem you are dealing with. What would you do next?", buttons:["Go outside to investigate this issue further"], children:[1]},
+        {image: "", prompt: "You decide not to attend your soldiers with you. Because it is dangerous outside, you decide to hide your identity by wearing a cloak.", buttons:["continue"], children:[9]},
+        {image: "", prompt: "You decide to attend your soldiers with you. Fully armored soldiers might keep you safe during the journey.", buttons:["continue"], children:[10]},
+        {image: "", prompt: "You went outside. It seems like no one recognizes you. You walk down a road and watch people around you. At the moment, You see a young girl crying next to you. What would you do?", buttons:["ignore and move on", "approach and hear her story"], children:[12, 11]},
+        {image: "", prompt: "You went outside, but people you met seem to be in fear and tremble. You tried asking them few questions, but no one answers you sincerely.", buttons:["continue"], children:[13]},
+        {image: "", prompt: "You ask the girl why she is crying. \"I'm so hungry. Me and my family are starving but have nothing to eat.\" After hearing this, you decide:", buttons:["Give her some coins", "give her nothing and move on"], children:[20, 12]},
+        {image: "", prompt: "You walk for a while and saw two strangers talking to each others. Maybe you can hear useful information from them. What would you do?", buttons:["slowly approach them and hear their conversation.", "Ask them directly what they know about the recent droughts."], children:[24, 22]},
+        {image: "", prompt: "Because you have no clue what the problem is, you decide to go back to your palace.", buttons:["continue"], children:[3]},
+        {image: "", prompt: "Because you have no clue what the problem is, you decide to go back to your palace. You also have the compass that the girl gave you.", buttons:["continue"], children:[17]},
+        {image: "", prompt: "You've identified the problem, and you go back to your palace. The problem is the corrupted nobles who collected too much taxes.", buttons:["continue"], children:[19]},
+        {image: "", prompt: "You've identified the problem, and you go back to your palace. The problem is the corrupted nobles who collected too much taxes. You also have the magic compass that the girl gave you.", buttons:["continue"], children:[18]},
+        {image: "17.jpeg", prompt: "Bad End: After several days later, a huge wave of angry mobs managed to break into your palace. They screamed \"Bring the king and nobles down!\". Luckily, the magic compass leads you to an escape route. You managed to escape your palace, but you are no longer king.", buttons:["back to the beginnning"], children:[0]},
+        {image: "18.png", prompt: "Good END: you decide to kill all of the corrupted nobles. One of your soldiers is a spy hired by the nobles, and he tries to kill you. Luckily, you have the magic compass that detected the killing threat and you managed to survive. All corrupted nobles are dead now, and people in your kingdom no longer suffer from the nobles.", buttons:["Congrats!"], children:[0]},
+        {image: "19.jpeg", prompt: "Bad End: you decide to kill all of the corrupted nobles. You sent them all to a jail first. You get some rest, but someone sneaks into your room and stabs you.", buttons:["Finish"], children:[0]},
+        {image: "", prompt: "The girl stops crying and thanks for your generousity. The girl gives a magic compass in return.", buttons:["continue"], children:[21]},
+        {image: "", prompt: "After helping the girl, you walk for a while and saw two strangers talking to each others. Maybe you can hear useful information from them. What would you do?", buttons:["slowly approach them and hear their conversation.", "Ask them directly what they know about the recent droughts."], children:[25, 23]},
+        {image: "", prompt: "The two men glares at you suspiciously. Without saying a word, they disappear.", buttons:["continue"], children:[13]},
+        {image: "", prompt: "The two men glares at you suspiciously. Without saying a word, they disappear.", buttons:["continue"], children:[14]},
+        {image: "", prompt: "You sneakly approach them to hear their conversation. You find a surprising fact that the drought was not the origin of people's anger, but it was the corrupted nobles.", buttons:["continue"], children:[15]},
+        {image: "", prompt: "You sneakly approach them to hear their conversation. You find a surprising fact that the drought was not the origin of people's anger, but it was the corrupted nobles.", buttons:["continue"], children:[16]},
+      ];
+
+    function changeImage(img, newSrc) {
+        img.src = newSrc;
+    }
+
+    function goToPage(buttonNum) {
+        var choices = document.getElementById("choices");
+        choices.replaceChildren();
+        var image = document.getElementById("image_s");
+        if (resources[buttonNum].image.length == 0) {
+          image.style.display = "none";
+        }
+        else {
+          image.style.display = "block";
+        }
+        image.src = resources[buttonNum].image;
+        var prompt = document.getElementById("prompt");
+        prompt.innerText = resources[buttonNum].prompt;
+        for (let i = 0; i < resources[buttonNum].children.length; i++) {
+            var button = document.createElement("BUTTON");
+            button.onclick = function() {goToPage(resources[buttonNum].children[i]);};
+            button.innerText = resources[buttonNum].buttons[i];
+            choices.appendChild(button);
+        }
+    }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <img id="image_s" src="forest_witch.jpeg" alt="Image" style="height:400px;">
+    <p id="prompt">Welcome! </p>
+    <div class="buttons" id="choices">
+      <button onclick="goToPage('page1.html')">Page 1</button>
+      <button onclick="goToPage('page2.html')">Page 2</button>
+      <button onclick="goToPage('page3.html')">Page 3</button>
+    </div>
+  </div>
+</body>
+</html>
